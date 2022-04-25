@@ -52,6 +52,18 @@
 ### useEffect
 + virtual dom -> html dom -> useEffect
 
+### useMemo, useCallback
++ 優化用
+
+### jsdoc 定義型態
+
+```
+  /**
+   * @type {React.MutableRefObject<HTMLInputElement>}
+   */
+```
+
+
 ### Source
 + [使用ESLint, Prettier, Husky, Lint-staged以及Commitizen提升專案品質及一致性](https://medium.com/@danielhu95/set-up-eslint-pipeline-zh-tw-990d7d9eb68e)
 + [Type Checking with PropTypes](https://zh-hant.reactjs.org/docs/typechecking-with-proptypes.html)
