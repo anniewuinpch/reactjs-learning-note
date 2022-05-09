@@ -1,16 +1,94 @@
-# react proxy-setting
+# react CORS 問題排除筆記
 
-### Proxy
-
-
-### React setting
-+ 第三方proxy
+## JSONP
+### jsonp
++ 安裝套件
   ```
+  yarn add jsonp
+  ```
++ 使用
+  ```
+  import jsonP from 'jsonp';
   
+  const URL = 'http://localhost:5000';  // 要設置的網域
+
+  jsonP(
+    `${URL}/test/annie/react-api/itemlist`,
+    {
+      param: 'callback',
+    },
+    function (err, response) {
+      if (response) {
+        resolve(response);
+      } else {
+        reject(response.message);
+      }
+    })
+  ```
+
+### axios-jsonp 
++ 安裝套件
+  ```
+  yarn add axios-jsonp url
+  ```
++ 使用
+  ```
+  import jsonpAdapter from 'axios-jsonp';
+  
+  const URL = 'http://localhost:5000';  // 要設置的網域
+  
+  return axios.get(`${URL}/test/annie/react-api/itemlist`,{ adapter: jsonpAdapter }
+        .then(response =>{
+            return {
+                itemList: response?.itemList,
+            };
+        })
+        .catch(error=>{
+            console.log(error)
+        })
+  ```
+
+## Proxy 代理伺服器
+### React setting
++ 第三方CORS Proxy
+  ```
+  const CORS_URL = 'https://cors-anywhere.herokuapp.com/'; // cors-anywhere
+  const URL = 'http://localhost:5000';  // 要設置的網域
+  
+  axios.get(`${CORS_URL}${URL}`, {
+      referrerPolicy: 'strict-origin-when-cross-origin',
+      body: null,
+      method: 'GET',
+      mode: 'cors',
+      credentials: 'omit',
+      ...options.headers,
+    })
+    .then((response => {
+      return {
+                itemList: response?.itemList,
+            };
+    })
+    .catch((error) => {
+      console.log(error);
+    });
   ```
 + webpack.config.js
-  ```
-  ```
+  + 安裝 dev server
+    ```
+    yarn add webpack webpack-cli webpack-dev-server
+    ```
+  + 設定proxy
+    ```
+    devServer: {
+      proxy: [
+        {
+          context: ['/api'],
+          target: 'http://localhost:5000',
+          changeOrigin: true,
+        },
+      ],
+    },
+    ```
 + setupProxy.js
   + 安裝 http-proxy-middleware
     ```
@@ -47,7 +125,8 @@
       })
     ```
 ### Source
-> [Proxying API Requests in Development](https://create-react-app.dev/docs/proxying-api-requests-in-development/)
-> 
+> [Cross Domain Ajax 跨網域抓取資料(JSONP)](https://ithelp.ithome.com.tw/articles/10094915)
+>  
 > [DAY06 - API串接常見問題 - CORS - 解決CORS問題篇](https://ithelp.ithome.com.tw/m/articles/10268821)
 > 
+> [Proxying API Requests in Development](https://create-react-app.dev/docs/proxying-api-requests-in-development/)
