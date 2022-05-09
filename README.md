@@ -26,8 +26,8 @@
     })
   ```
 
-### axios-jsonp 
-+ 方法2: 安裝套件
+### 方法2: axios-jsonp 
++ 安裝套件
   ```
   yarn add axios-jsonp url
   ```
@@ -49,8 +49,7 @@
   ```
 
 ## Proxy 代理伺服器
-### React setting
-+ 方法1: setupProxy.js (目前選用)
+### 方法1: setupProxy.js (目前選用)
   + 安裝 http-proxy-middleware
     ```
     yarn add http-proxy-middleware
@@ -85,7 +84,7 @@
     ```
     yarn run build
     ```
-+ 方法2: webpack.config.js
+### 方法2: webpack.config.js
   + 安裝 dev server
     ```
     yarn add webpack webpack-cli webpack-dev-server
@@ -102,7 +101,7 @@
       ],
     },
     ```
-+ 方法3: 第三方 CORS Proxy
+### 方法3: 第三方 CORS Proxy
   ```
   const CORS_URL = 'https://cors-anywhere.herokuapp.com/'; // cors-anywhere
   const URL = 'http://localhost:5000';  // 要設置的網域
