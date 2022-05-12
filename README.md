@@ -1,7 +1,7 @@
 # react CORS 問題排除筆記
 
-## JSONP (目前選用)
-### 方法1: jsonp
+## JSONP
+### 方法1: jsonp (目前選用)
 + 安裝套件
   ```
   yarn add jsonp
